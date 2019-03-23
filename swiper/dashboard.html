@@ -1,0 +1,167 @@
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Match.com Ratings</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="files/style.css">
+    </head>
+
+    <body>
+        <div class="container" style="vertical-align:top;">
+
+
+
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="row" style="text-align:center;vertical-align:top">
+                        <div class="col">
+                            <h2 id="profile-label" style="margin:0;margin-bottom:20px;"></h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <img id="main-photo" class="photo" style="margin: auto;height:630px;" src="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div id="gallery"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6">
+                    <div class="row">
+                        <div class="col">
+                            <table class="details-table">
+                                <tbody>
+                                    <tr id="relative_activity"></tr>
+                                    <tr id="age"></tr>
+                                    <tr id="location"></tr>
+                                    <tr id="seeking"></tr>
+                                    <tr id="status"></tr>
+                                    <tr id="has_kids"></tr>
+                                    <tr id="wants_kids"></tr>
+                                    <tr id="education"></tr>
+                                    <tr id="body_type"></tr>
+                                    <tr id="height"></tr>
+                                    <tr id="url"></tr>                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12">
+                    <table class="details-table">
+                        <tbody>
+                            <tr id="essay"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <table class="details-table">
+                        <thead>
+                            <th>SHE HAS:</th>
+                        </thead>
+                        <tbody>
+                            <tr id="religion"></tr>
+                            <tr id="smokes"></tr>
+                            <tr id="drinks"></tr>
+                            <tr id="ethnicity"></tr>
+                            <tr id="languages"></tr>
+                            <tr id="profession"></tr>
+                            <tr id="university"></tr>
+                            <tr id="horoscope"></tr>
+                            <tr id="exercise"></tr>
+                            <tr id="political"></tr>
+                            <tr id="favorite_things"></tr>
+                            <tr id="for_fun"></tr>
+                            <tr id="pets"></tr>
+                            <tr id="last_read"></tr>
+                            <tr id="favorite_local_spots"></tr>
+                            <tr id="common_interests"></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-12 col-md-6">
+                    <table class="details-table">
+                        <thead>
+                            <th>SHE WANTS:</th>
+                        </thead>                        
+                        <tbody>
+                            <tr id="wants_height"></tr>
+                            <tr id="wants_build"></tr>
+                            <tr id="wants_smokes"></tr>
+                            <tr id="wants_drinks"></tr>
+                            <tr id="wants_income"></tr>
+                            <tr id="wants_wants_kids"></tr>
+                            <tr id="wants_ethnicity"></tr>
+                            <tr id="wants_religion"></tr>
+                            <tr id="wants_education"></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        <hr>
+
+        <div style="margin-top:20px;margin-left:50px;">
+            Instructions:
+            <ul>
+                <li>'W' and 'S' to view different images within the same profile</li>
+                <li>'1', '2', and '3' on the keypad to rate the user</li>
+                <li>('A' and 'D' to go between profiles without rating)</li>
+            </ul>
+        </div>
+
+        <hr>
+
+
+        <input type="file" id="selectFiles" value="Import" />
+        <button id="import">Load Profiles</button>
+        <button id="export">Save Results</button>
+
+
+        <table style="width:100%;vertical-align:top;text-align:center">
+            <tr>
+                <td style="width:25%;vertical-align:top;">
+                    <div id="good_list"><h3>Good List:</h3></div>
+                </td>
+                <td style="width:25%;vertical-align:top;">
+                    <div id="maybe_list"><h3>Maybe List:</h3></div>
+                </td>
+                <td style="width:25%;vertical-align:top;">            
+                    <div id="bad_list"><h3>Bad List:</h3></div>
+                </td>
+            </tr>
+        </table>
+
+
+        </div>
+
+
+
+
+
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script src="files/jquery-csv.js"></script>
+
+        <!-- Remove this import once project is complete and testing is done -->
+        <script src="files/profiles.js"></script>
+        
+        <script src="files/swiper.js"></script>
+        
+    </body>
+</html>
