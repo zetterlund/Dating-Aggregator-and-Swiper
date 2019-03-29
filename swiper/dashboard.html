@@ -1,28 +1,37 @@
+<!DOCTYPE html>
 <html>
 
     <head>
         <meta charset="utf-8">
-        <title>Match.com Ratings</title>
+        <title>Dating Aggregator Swiper</title>
+        <link rel="shortcut icon" href="css/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="files/style.css">
+        <link rel="stylesheet" href="css/style.css">
+        
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
     </head>
 
     <body>
-        <div class="container" style="vertical-align:top;">
+        <div class="container" id="main-container">
 
+            <div class="row text-center">
+                <div class="col">
+                    <h1 id="page-header">Dating Aggregator Swiper</h1>
+                </div>
+            </div>
 
+            <hr>
 
             <div class="row">
-
-                <div class="col-12 col-md-6">
-                    <div class="row" style="text-align:center;vertical-align:top">
+                <div class="col-12 col-md-8">
+                    <div class="row ">
                         <div class="col">
-                            <h2 id="profile-label" style="margin:0;margin-bottom:20px;"></h2>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <img id="main-photo" class="photo" style="margin: auto;height:630px;" src="">
+                            <div id="main-photo-container">
+                                <img id="main-photo" class="photo">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -32,122 +41,148 @@
                     </div>
                 </div>
 
-                <div class="col-12 col-md-6">
-                    <div class="row">
+                <div class="col-12 col-md-4">                    
+                    <div class="row text-center">
+                        <div class="col">
+                            <h2 id="profile-label"></h2>
+                        </div>
+                    </div>
+                    <div class="row details-row">
                         <div class="col">
                             <table class="details-table">
-                                <tbody>
-                                    <tr id="relative_activity"></tr>
-                                    <tr id="age"></tr>
-                                    <tr id="location"></tr>
-                                    <tr id="seeking"></tr>
-                                    <tr id="status"></tr>
-                                    <tr id="has_kids"></tr>
-                                    <tr id="wants_kids"></tr>
-                                    <tr id="education"></tr>
-                                    <tr id="body_type"></tr>
-                                    <tr id="height"></tr>
-                                    <tr id="url"></tr>                                    
+                                <thead><th colspan="2">Basic Stats:</th></thead>
+                                <tbody>                                    
+                                    <tr id="age"><td></td></tr>
+                                    <tr id="location"><td></td></tr>
+                                    <tr id="seeking"><td></td></tr>
+                                    <tr id="status"><td></td></tr>
+                                    <tr id="has_kids"><td></td></tr>
+                                    <tr id="wants_kids"><td></td></tr>
+                                    <tr id="education"><td></td></tr>
+                                    <tr id="body_type"><td></td></tr>
+                                    <tr id="height"><td></td></tr>                                    
                                 </tbody>
                             </table>
                         </div>
                     </div>
+                    <div class="row details-row">
+                        <div class="col">
+                            <table class="details-table">
+                                <thead><th colspan="2">Promethium Proprietary Stats:</th></thead>
+                                <tbody>
+                                    <tr id="relative_activity"><th>Relative activity:</th><td></td></tr>
+                                    <tr id="writing_score"><th>Writing score:</th><td></td></tr>
+                                    <tr id="desirability_index"><th>Desirability index:</th><td></td></tr>
+                                    <tr id="url"><th>Original URL:</th><td></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row" id="rating-row">
+                        <div class="col">
+                            <p><span id="current-rating-label">Current rating:</span></p>
+                            <p><span id="current-profile-rating">Unrated</span></p>
+                        </div>
+                    </div>                    
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-12">
-                    <table class="details-table">
-                        <tbody>
-                            <tr id="essay"></tr>
-                        </tbody>
-                    </table>
-                </div>
+
+
+
+
+            <div class="row details-row">
+                <div class="col" id="details-row-essay"></div>
             </div>
 
 
 
-            <div class="row">
-                <div class="col-12 col-md-6">
+
+
+            <div class="row details-row">
+                <div class="col-12 col-md-6" id="details-row-has">
                     <table class="details-table">
                         <thead>
-                            <th>SHE HAS:</th>
+                            <th colspan="2" id="profile-has">has:</th>
                         </thead>
                         <tbody>
-                            <tr id="religion"></tr>
-                            <tr id="smokes"></tr>
-                            <tr id="drinks"></tr>
-                            <tr id="ethnicity"></tr>
-                            <tr id="languages"></tr>
-                            <tr id="profession"></tr>
-                            <tr id="university"></tr>
-                            <tr id="horoscope"></tr>
-                            <tr id="exercise"></tr>
-                            <tr id="political"></tr>
-                            <tr id="favorite_things"></tr>
-                            <tr id="for_fun"></tr>
-                            <tr id="pets"></tr>
-                            <tr id="last_read"></tr>
-                            <tr id="favorite_local_spots"></tr>
-                            <tr id="common_interests"></tr>
+                            <tr id="religion"><th>Religion</th><td></td></tr>
+                            <tr id="smokes"><th>Smokes</th><td></td></tr>
+                            <tr id="drinks"><th>Drinks</th><td></td></tr>
+                            <tr id="ethnicity"><th>Ethnicity</th><td></td></tr>
+                            <tr id="languages"><th>Languages</th><td></td></tr>
+                            <tr id="profession"><th>Profession</th><td></td></tr>
+                            <tr id="university"><th>University</th><td></td></tr>
+                            <tr id="horoscope"><th>Horoscope</th><td></td></tr>
+                            <tr id="exercise"><th>Exercise</th><td></td></tr>
+                            <tr id="political"><th>Political</th><td></td></tr>
+                            <tr id="favorite_things"><th>Favorite things</th><td></td></tr>
+                            <tr id="for_fun"><th>For fun</th><td></td></tr>
+                            <tr id="pets"><th>Pets</th><td></td></tr>
+                            <tr id="last_read"><th>Last read</th><td></td></tr>
+                            <tr id="favorite_local_spots"><th>Favorite local spots</th><td></td></tr>
+                            <tr id="common_interests"><th>Common interests</th><td></td></tr>
                         </tbody>
                     </table>
                 </div>
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6" id="details-row-wants">
                     <table class="details-table">
                         <thead>
-                            <th>SHE WANTS:</th>
-                        </thead>                        
+                            <th colspan="2" id="profile-wants">wants:</th>
+                        </thead>
                         <tbody>
-                            <tr id="wants_height"></tr>
-                            <tr id="wants_build"></tr>
-                            <tr id="wants_smokes"></tr>
-                            <tr id="wants_drinks"></tr>
-                            <tr id="wants_income"></tr>
-                            <tr id="wants_wants_kids"></tr>
-                            <tr id="wants_ethnicity"></tr>
-                            <tr id="wants_religion"></tr>
-                            <tr id="wants_education"></tr>
+                            <tr id="wants_height"><th>Height</th><td></td></tr>
+                            <tr id="wants_build"><th>Build</th><td></td></tr>
+                            <tr id="wants_smokes"><th>Smokes</th><td></td></tr>
+                            <tr id="wants_drinks"><th>Drinks</th><td></td></tr>
+                            <tr id="wants_income"><th>Income</th><td></td></tr>
+                            <tr id="wants_wants_kids"><th>Wants kids</th><td></td></tr>
+                            <tr id="wants_ethnicity"><th>Ethnicity</th><td></td></tr>
+                            <tr id="wants_religion"><th>Religion</th><td></td></tr>
+                            <tr id="wants_education"><th>Education</th><td></td></tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-        <hr>
+            <hr>
 
-        <div style="margin-top:20px;margin-left:50px;">
-            Instructions:
-            <ul>
-                <li>'W' and 'S' to view different images within the same profile</li>
-                <li>'1', '2', and '3' on the keypad to rate the user</li>
-                <li>('A' and 'D' to go between profiles without rating)</li>
-            </ul>
+
+
+            <div class="row">
+                <div class="col">
+                    <input type="file" id="selectFiles" value="Import" />
+                    <button id="import">Load Profiles</button>
+                    <button id="export">Save Results</button>
+                </div>
+            </div>
+
+            <div class="row" id="instructions-box">
+                <div class="col">
+                    <p>Instructions:</p>
+                    <ul>
+                        <li>
+                            <strong>Desktop:</strong>
+                            <ul>
+                                <li>'W' and 'S' to scroll a profile's photos</li>
+                                <li>'1', '2', and '3' on the keypad to rate the profile (3 = "Good", 2 = "Maybe", 1 = "Bad")</li>
+                                <li>('A' and 'D' to skip between profiles without rating)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Mobile:</strong>
+                            <ul>
+                                <li>Swipe the profile image to rate (Right = "Good", Left = "Bad")</li>
+                                <li>Swipe Up and Down to scroll a profile's photos</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
         </div>
 
-        <hr>
-
-
-        <input type="file" id="selectFiles" value="Import" />
-        <button id="import">Load Profiles</button>
-        <button id="export">Save Results</button>
-
-
-        <table style="width:100%;vertical-align:top;text-align:center">
-            <tr>
-                <td style="width:25%;vertical-align:top;">
-                    <div id="good_list"><h3>Good List:</h3></div>
-                </td>
-                <td style="width:25%;vertical-align:top;">
-                    <div id="maybe_list"><h3>Maybe List:</h3></div>
-                </td>
-                <td style="width:25%;vertical-align:top;">            
-                    <div id="bad_list"><h3>Bad List:</h3></div>
-                </td>
-            </tr>
-        </table>
-
-
-        </div>
 
 
 
@@ -155,13 +190,19 @@
 
 
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-        <script src="files/jquery-csv.js"></script>
 
-        <!-- Remove this import once project is complete and testing is done -->
-        <script src="files/profiles.js"></script>
-        
-        <script src="files/swiper.js"></script>
-        
+
+        <footer class="footer text-center">
+            <a href="http://promethium-llc.com"><span class="text-muted">Powered by Promethium</span></a>
+        </footer>
+
+
+
+             
+        <script src="js/main.js"></script>
+        <script src="js/touchswipe.js"></script>
+
+
+
     </body>
 </html>
