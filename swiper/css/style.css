@@ -1,55 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Markazi+Text|Raleway');
 
-
 body {
     letter-spacing: -.01em;
     margin: 0;
-}
-
-
-
-
-
-#parallax-container {
-  display: block;
-  /*height: 750px;*/
-}
-
-#background {
-    background-image: url("../files/images/5.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
-#parallax-container div {
-  position: fixed;
-  top: 0;
-  transform: translateY(0px);
-  height: 200%;
-  width: 100%;
-}
-
-
-
-#content {
-  position: relative;
-  color: #ffffff;
-}
-
-#main-container {
-	padding-top: 10px;
-}
-
-
-
-#page-header {
-	/*text-transform: uppercase;*/
-	font-size: 2em;
-	margin: 0;
-	line-height: 1em;
-    font-family: 'Markazi Text', serif;	
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.33);
 }
 
 hr {
@@ -59,6 +12,25 @@ hr {
 }
 
 
+
+/* --- Main container --- */
+#content {
+  position: relative;
+  color: #ffffff;
+}
+
+#main-container {
+	padding-top: 10px;
+}
+
+#page-header {
+	/*text-transform: uppercase;*/
+	font-size: 2em;
+	margin: 0;
+	line-height: 1em;
+    font-family: 'Markazi Text', serif;	
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.33);
+}
 
 @media (min-width: 576px) {
 	.container {
@@ -70,10 +42,11 @@ hr {
 		max-width: 1140px;
 	}
 }
+/* ------------------- */
 
 
 
-/* Photo-related design */
+/* --- Photo-related design --- */
 #main-photo-container {
     max-height: 600px;
     width: 100%;
@@ -124,17 +97,7 @@ div#gallery {
 
 
 
-.details-row {
-	padding: 10px;
-}
-
-.details-row > div[class^="col"] {
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-
-
+/* --- Details tables --- */
 .details-table {
 	width: 100%;
 	background-color: rgba(27, 34, 43, 0.65);
@@ -194,8 +157,19 @@ div#gallery {
 .details-table tbody tr:first-child > * {
 	padding-top: 5px;
 }
+/* ------------------- */
 
 
+
+/* --- Details rows --- */
+.details-row {
+	padding: 10px;
+}
+
+.details-row > div[class^="col"] {
+	padding-left: 10px;
+	padding-right: 10px;
+}
 
 #details-row-has,
 #details-row-wants {
@@ -210,41 +184,20 @@ div#gallery {
 	width: 7em;
 }
 
-#has-wants-container {
-	padding-top: 0;
-}
-
-#essay-container {
-	padding: 10px;
-}
-
-#essay {
-	margin: 0;
-}
-
-
-
 span.no-value {
 	color: #888;
 	font-style: oblique;
 	text-shadow: none;
 }
+/* ------------------- */
 
 
 
-#profile-label {
-    margin: 10px 0;
-	font-family: 'Markazi Text', serif;	
-    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.33);    
-}
-
-
-
+/* --- Ratings sections --- */
 #rating-row {
     text-align: center;
     margin-bottom: 20px;
 }
-
 #rating-row p {
 	margin: 0;
 }
@@ -266,10 +219,11 @@ span.no-value {
 	font-size: 0.85em;
 	font-weight: 300;
 }
+/* ------------------- */
 
 
 
-/* Ratings-related design changes */
+/* --- Ratings-dependent design changes --- */
 [rating=good] #main-photo {
 	box-shadow: 1px 1px 0px 3px rgb(0, 200, 0);
 }
@@ -306,20 +260,7 @@ span.no-value {
 
 
 
-#import-export-row {
-	padding: 0 10px;
-}
-
-#instructions-box {
-    margin-left: 100px;
-	text-shadow:
-		1px 1px 1px rgba(0, 0, 0, 0.5),
-		0px 1px 1px rgba(0, 0, 0, 0.5),
-		-1px 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-
-
+/* --- Footer --- */
 footer.footer {
     position: absolute;
     /*bottom: 0;*/
@@ -336,3 +277,61 @@ footer.footer {
     color: #ffffff!important;
     text-shadow: 0 0 1px rgb(0, 0, 0), 1px 1px 2px rgb(0, 0, 0);
 }
+/* ------------------- */
+
+
+
+/* --- Parallax background --- */
+#parallax-container {
+  display: block;
+  /*height: 750px;*/
+}
+
+#background {
+    background-image: url("../files/images/5.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#parallax-container div {
+  position: fixed;
+  top: 0;
+  transform: translateY(0px);
+  height: 200%;
+  width: 100%;
+}
+/* ------------------- */
+
+
+
+/* --- Miscellaneous --- */
+#has-wants-container {
+	padding-top: 0;
+}
+
+#essay-container {
+	padding: 10px;
+}
+#essay {
+	margin: 0;
+}
+
+#profile-label {
+    margin: 10px 0;
+	font-family: 'Markazi Text', serif;	
+    text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.33);    
+}
+
+#import-export-row {
+	padding: 0 10px;
+}
+
+#instructions-box {
+    margin-left: 100px;
+	text-shadow:
+		1px 1px 1px rgba(0, 0, 0, 0.5),
+		0px 1px 1px rgba(0, 0, 0, 0.5),
+		-1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+/* ------------------- */
