@@ -1,40 +1,25 @@
 
-
-// Initialize global variables
-// var currentProfileIndex = 0
-// var currentPhotoIndex = 0
-// var profiles = []
-
-
-
-
-
-// Import the profiles
-$('#import').click(function() {
-
-    let files = document.getElementById('selectFiles').files;
-    console.log(files);
-
-    // Check that file was chosen for upload
-    if (files.length <= 0) {
-        return false;
+// Load the profiles
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
     }
-
-    // Parse the profiles into a list, then arrange and load them
-    let fr = new FileReader();
-    fr.onload = function(e) {
-        console.log(e);
-        let result = JSON.parse(e.target.result);
-        profiles = result;
-        arrangeProfiles();
-    }
-    fr.readAsText(files.item(0));
-
+    rawFile.send(null);
+}
+readTextFile("files/profiles.json", function(text){
+    var data = JSON.parse(text);
+    profiles = data;
+    arrangeProfiles();
+    // console.log(data);
 });
 
-// When importing the profiles, this function arranges arranges them in the correct order
+// When importing the profiles, this function arranges them in the correct order
 function arrangeProfiles() {
-
     // Re-arrange the profiles so that those already rated are moved to the start of the array
     var counter = 0;
     for (var p in profiles) {
@@ -44,10 +29,8 @@ function arrangeProfiles() {
             counter++;
         };
     };
-
     // Load the initial profile, starting at the location of the first un-rated profile
     retrieveProfile(counter);
-
 }
 
 // Save the rating results JSON file
@@ -67,11 +50,6 @@ $("#export").click(function() {
     document.body.removeChild(hiddenElement);
 
 });
-
-
-
-
-
 
 
 
@@ -104,8 +82,6 @@ function getPronoun(gender, type) {
 
 
 
-
-
 // Retrieves the next/previous photo
 function getPhoto(direction) {
     var i = currentPhotoIndex;
@@ -135,12 +111,24 @@ $("#gallery").on('click', 'img', function() {
     retrievePhoto($(this).attr("id"));
 });
 
+// Preload images into cache to make the app go faster
+function preloadPhotos(i) {
+    console.log("Current i: " + i);
+    var profilesToLoad = [i+1, i-1];
 
-
-
-
-
-
+    for (let profile of profilesToLoad) {
+    	if (typeof profiles[profile] != 'undefined') {
+	        var id = profiles[profile]['id'];
+	        var photos = profiles[profile]['photos'];
+	        for (let p of photos) {
+	            var url = "files/profile-photos/" + id + "/" + p;
+	            console.log(url);
+	            var image = new Image();
+	            image.src = url;
+	        };
+    	};
+    };
+};
 
 
 
@@ -159,15 +147,19 @@ $(document).keydown(function(e){
         case 68: // 'D' key
             getProfile('next');
             break;
+        case 51:
         case 99:
             rateProfile('good');
             break;
+        case 50:
         case 98:
             rateProfile('maybe');
             break;
+        case 49:
         case 97:
             rateProfile('bad');
             break;
+        case 48:
         case 96:
             rateProfile('skip');
             break;
@@ -176,15 +168,10 @@ $(document).keydown(function(e){
 
 
 
-
-
-
-
 function retrieveProfile(i) {
 
     currentProfileIndex = Number(i);
     profile = profiles[i];
-
 
     // Set profile photos
     $("#gallery").empty();
@@ -212,7 +199,7 @@ function retrieveProfile(i) {
     };
     // Set values for 'special' fields
     $(".details-table tr#url td").html(`<a href="${profile['data']['url']}">View original profile</a>`);
-    $("#details-row-essay").text(profile['data']['essay']);
+    $("#essay").text(profile['data']['essay']);
 
     // Set values for 'special' labels
     $("#profile-has").text(getPronoun(profile['data']['gender'], 'nominative') + ' has:');
@@ -228,6 +215,8 @@ function retrieveProfile(i) {
         $("#rating-row").css('display', 'flex');
         $("#main-container").attr('rating', rating);
     }
+
+    preloadPhotos(i);
 
 }
 
@@ -259,14 +248,8 @@ function rateProfile(rating) {
 
 
 
-
-
-
-
-
 // Finger-swiping functionality for mobile devices
-$(document).ready(function() {          
-
+$(document).ready(function() {
     $("#main-photo").swipe({
         swipe:function(event, direction, distance, duration, fingerCount, fingerData) {
             if (direction == "left") {
@@ -290,40 +273,17 @@ $(document).ready(function() {
         },
         threshold:30
     });
-
 });
 
 
 
-
-
-// $(document).ready(function(){
-
-//     $(".buddy").on("swiperight",function(){
-//       $(this).addClass('rotate-left').delay(300).fadeOut(1);
-//       $('.buddy').find('.status').remove();
-
-//       $(this).append('<div class="status like">Like!</div>');      
-//       if ( $(this).is(':last-child') ) {
-//         $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
-//        } else {
-//           $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-//        }
-//     });  
-
-//    $(".buddy").on("swipeleft",function(){
-//     $(this).addClass('rotate-right').delay(700).fadeOut(1);
-//     $('.buddy').find('.status').remove();
-//     $(this).append('<div class="status dislike">Dislike!</div>');
-
-//     if ( $(this).is(':last-child') ) {
-//      $('.buddy:nth-child(1)').removeClass ('rotate-left rotate-right').fadeIn(300);
-//       alert('OUPS');
-//      } else {
-//         $(this).next().removeClass('rotate-left rotate-right').fadeIn(400);
-//     } 
-//   });
-
-// });
-
-
+// Parallax background scroller
+window.addEventListener('scroll', () => {
+   let parent = document.getElementById('parallax-container');
+   let child = document.getElementById('background');
+   child.style.transform = 'translateY(-' + (window.pageYOffset * 0.2) + 'px)';
+   // let children = parent.getElementsByTagName('div');
+   // for(let i = 0; i < children.length; i++) {
+   //   children[i].style.transform = 'translateY(-' + (window.pageYOffset * i / children.length) + 'px)';
+   // }
+}, false)
